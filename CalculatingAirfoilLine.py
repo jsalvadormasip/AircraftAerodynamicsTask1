@@ -43,7 +43,8 @@ m/=100
 p = airfoil[5]
 p=float(p)
 p/=10
-x = np.linspace(0, 1, 101)
+chord = 1
+x = np.linspace(0, chord, 101)
 
 z1 = m/p**2*(2*p*x[:int(p*100)+1]-x[:int(p*100)+1]**2)
 z2 = m/((1-p)**2)*((1-2*p)+2*p*x[int(p*100)+1:]-x[int(p*100)+1:]**2)
