@@ -4,9 +4,39 @@ import matplotlib.pyplot as plt
 student_number = 5533449
 last_three_digits = student_number % 1000
 sum_of_digits = sum([int(digit) for digit in str(last_three_digits)])
-print(sum_of_digits)
 
-airfoil = 'NACA2421'
+if sum_of_digits == 0 or sum_of_digits == 1:
+    airfoil = 'NACA2424'
+elif sum_of_digits == 2 or sum_of_digits == 3:
+    airfoil = 'NACA2415'
+elif sum_of_digits == 4 or sum_of_digits == 5:
+    airfoil = 'NACA4415'
+elif sum_of_digits == 6 or sum_of_digits == 7:
+    airfoil = 'NACA2408'
+elif sum_of_digits == 8 or sum_of_digits == 9:
+    airfoil = 'NACA4421'
+elif sum_of_digits == 10 or sum_of_digits == 11:
+    airfoil = 'NACA2412'
+elif sum_of_digits == 12 or sum_of_digits == 13:
+    airfoil = 'NACA1412'
+elif sum_of_digits == 14 or sum_of_digits == 15:
+    airfoil = 'NACA4418'
+elif sum_of_digits == 16 or sum_of_digits == 17:
+    airfoil = 'NACA2421'
+elif sum_of_digits == 18 or sum_of_digits == 19:
+    airfoil = 'NACA1408'
+elif sum_of_digits == 20 or sum_of_digits == 21:
+    airfoil = 'NACA4412'
+elif sum_of_digits == 22 or sum_of_digits == 23:
+    airfoil = 'NACA1410'
+elif sum_of_digits == 24 or sum_of_digits == 25:
+    airfoil = 'NACA2418'
+elif sum_of_digits == 26 or sum_of_digits == 27:
+    airfoil = 'NACA2410'
+else:
+    airfoil = 'Unknown Airfoil'
+
+
 m = airfoil[4]
 m = float(m)
 m/=100
@@ -14,12 +44,15 @@ p = airfoil[5]
 p=float(p)
 p/=10
 x = np.linspace(0, 1, 101)
-print(x[:int(p*100)+1])
-print(x[int(p*100)+1:   ])
+
 z1 = m/p**2*(2*p*x[:int(p*100)+1]-x[:int(p*100)+1]**2)
 z2 = m/((1-p)**2)*((1-2*p)+2*p*x[int(p*100)+1:]-x[int(p*100)+1:]**2)
 z = np.concatenate([z1, z2])
 
-plt.plot(x, z)
-plt.axis('equal')
-plt.show()
+if __name__ == '__main__':
+    print("sum of three last digits",sum_of_digits)
+    print(x[:int(p*100)+1])
+    print(x[int(p*100)+1:   ])
+    plt.plot(x, z)
+    plt.axis('equal')
+    plt.show()
