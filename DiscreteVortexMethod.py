@@ -42,22 +42,23 @@ def closest_point(array, point):
     
     return min_index
 #parameters
-npanels = 10 
+npanels = 100
 rho = 1.225 # kg/m^3 air density
 Q_inf = 100 # m/s free stream velocity
 Cl_array = []
-alpha_array = np.linspace(-10*np.pi/180,10*np.pi/180,21)
+# alpha_array = np.linspace(-10*np.pi/180,10*np.pi/180,21)
+alpha_array = np.array([0])
 for i in alpha_array:
     alpha = i # angle of attack
     free_stream_velocity = np.array([Q_inf*np.cos(alpha), Q_inf*np.sin(alpha)])
 
     airfoil_points = np.column_stack((airfoil_x, airfoil_line))
     discretized_indices = np.linspace(0, 100, npanels+1, dtype=int)
-    print(discretized_indices)
+    # print(discretized_indices)
     discretized_airfoil_line = airfoil_line[discretized_indices]
     discretized_airfoil_x = airfoil_x[discretized_indices]
-    print(discretized_airfoil_line)
-    print(discretized_airfoil_x)
+    # print(discretized_airfoil_line)
+    # print(discretized_airfoil_x)
 
 
 
@@ -89,8 +90,8 @@ for i in alpha_array:
 
 
     vortex_strengths = np.linalg.solve(a_matrix, RHS_matrix)
-    print("vortex strengths")
-    print(vortex_strengths)
+    # print("vortex strengths")
+    # print(vortex_strengths)
 
     delta_lift_matrix = rho*Q_inf*vortex_strengths
     delta_p_matrix = delta_lift_matrix/np.linalg.norm(control_points[1]-control_points[0])
@@ -99,9 +100,16 @@ for i in alpha_array:
     Cl = lift/(0.5*rho*airfoil_chord*Q_inf**2)
     Cl_array.append(Cl)
     Cm0 = Moment_LE/(0.5*rho*airfoil_chord**2*Q_inf**2)
-    print(Cl)
-Cl_alpha = (Cl_array[1]-Cl_array[0])/(alpha_array[1]-alpha_array[0])
+    # print(Cl)
+Cl_array = np.array(Cl_array)
+Cl_alpha = (Cl_array[1:]-Cl_array[:-1])/(alpha_array[1:]-alpha_array[:-1])
 print(Cl_alpha)
+print(np.average(Cl_alpha))
+print(2*np.pi)
+Cp = delta_p_matrix/(0.5*rho*Q_inf**2)
+plt.plot( vortex_points[:,0], Cp)
+print(control_points[:,0])
+plt.show()
 plt.plot(alpha_array, Cl_array)
 
 plt.show()
