@@ -44,10 +44,11 @@ def closest_point(array, point):
 #parameters
 
 # numberofpanels = np.linspace(2,100,18, dtype=int)
-# numberofpanels = np.array([1.8**i for i in range(1,8)])
+numberofpanels = np.array([1.8**i for i in range(1,8)])
+numberofpanels = np.hstack((numberofpanels, 1))
 # numberofpanels = np.hstack((numberofpanels, 100))
 # numberofpanels = np.hstack((numberofpanels, 150))
-numberofpanels = np.array([100])
+# numberofpanels = np.array([100])
 numberofpanels = np.round(numberofpanels)
 numberofpanels = numberofpanels.astype(int)
 # numberofpanels = np.array([100])
@@ -109,7 +110,7 @@ for ix in numberofpanels:
         # print(vortex_strengths)
 
         delta_lift_matrix = rho*Q_inf*vortex_strengths
-        delta_p_matrix = delta_lift_matrix/np.linalg.norm(control_points[1]-control_points[0])
+        # delta_p_matrix = delta_lift_matrix/np.linalg.norm(control_points[1]-control_points[0])
         lift = np.sum(delta_lift_matrix)
         # Moment_LE = 0
         # for ixx in range(delta_lift_matrix.shape[0]):
@@ -166,10 +167,11 @@ plt.quiver(control_points[:,0], control_points[:,1], normal_vectors[:,0], normal
 
 # Plot tangential vectors at control points
 # plt.quiver(control_points[:,0], control_points[:,1], tangential_vectors[:,0], tangential_vectors[:,1], color='b', scale=10)
-
+twopi = np.ones(numberofpanels.shape[0])*2*np.pi
 plt.axis('equal')
 plt.show()
 plt.scatter(numberofpanels, slopes)
+# plt.plot(numberofpanels, twopi, 'r--')
 plt.xlabel("Number of panels", fontsize = 18)
 plt.ylabel(r"$\frac{dC_l}{d\alpha}$", fontsize = 20)
 
