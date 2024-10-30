@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-student_number = 5533449
+student_number = 5533449   #based on the student number we can know the airfoil
 last_three_digits = student_number % 1000
 sum_of_digits = sum([int(digit) for digit in str(last_three_digits)])
 
@@ -37,17 +37,19 @@ else:
     airfoil = 'Unknown Airfoil'
 
 
-m = airfoil[4]
+m = airfoil[4] # gets the max camber from the airfoil name
 m = float(m)
-m/=100
-p = airfoil[5]
+m/=100 
+# m *= 0.5  # changing the max camber
+p = airfoil[5] #gets the position of max camber from airfoil name
 p=float(p)
 p/=10
+# p*=2 # changing the position of max camber
 chord = 1
-x = np.linspace(0, chord, 101)
+x = np.linspace(0, chord, 101) #define an array of the x coordinate
 
-z1 = m/p**2*(2*p*x[:int(p*100)+1]-x[:int(p*100)+1]**2)
-z2 = m/((1-p)**2)*((1-2*p)+2*p*x[int(p*100)+1:]-x[int(p*100)+1:]**2)
+z1 = m/p**2*(2*p*x[:int(p*100)+1]-x[:int(p*100)+1]**2) #first part of the given equation
+z2 = m/((1-p)**2)*((1-2*p)+2*p*x[int(p*100)+1:]-x[int(p*100)+1:]**2) #second part of the given equation
 z = np.concatenate([z1, z2])
 
 if __name__ == '__main__':

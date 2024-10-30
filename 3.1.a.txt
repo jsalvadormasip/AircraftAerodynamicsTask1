@@ -1,0 +1,20 @@
+3.1.a
+Thin airfoil theory is not adequate to describe the maximum Cl of an airfoil, as the normal flow condition is applied at all panels, and thus no flow separation can be modeled, which means that the stall can't be described. 
+
+3.1.b
+The lift slope of an airfoil is pretty well described thanks to thin airfoil theory as both slopes are close to 2*pi in task 2.1.b.
+
+3.1.c
+The Cm of an airfoil is a bit incorrectly described, as when measured at quarter chord, the Cm of thin airfoil theory does not change much (as expected because the a.c. is predicted to be there). However, the actual a.c. of a thick airfoil is slightly off the x = 1/4c, which makes the Cm against alpha slightly decreasing. Either way, the variation is slight, as the moment coefficient is contained within -0.02 and -0.09
+
+3.1.d
+The angle of attack at zero-lift of an airfoil is perfectly described, as both Cl-alpha curves with different slopes coincide there. 
+
+
+3.2.a
+As can be seen in the plot below:
+Thin airfoil: Pressure difference is less extreme, because of the relatively small curvature (only due to camber). The variation in delta(CP) is more gradual over the chord. Then, the thin airfoil has less pressure recovery toward the trailing edge. Also, close to the leading edge, the suction peak is larger due to the sharp leading edge, which creates a sharp flow acceleration. 
+Thick airfoil: The delta(Cp) is larger, because the thick airfoil creates a stronger suction peak due to its greater curvature. Thick airfoils tend to have more pressure recovery, but a more gradual suction peak, a bit further downstream of the thin airfoil's suction peak. However, it attains higher values. 
+
+
+3.2.b
